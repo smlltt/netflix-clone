@@ -3,6 +3,7 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import TextInput from "@/components/atoms/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useValidationSchema from "@/components/organisms/SignupForm/validation";
+import axios from "axios";
 
 const SignupForm = () => {
   const validationSchema = useValidationSchema();
@@ -18,13 +19,19 @@ const SignupForm = () => {
       password: "",
     },
   });
-  console.log({ errors });
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data", data);
+
+  const signUp: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      await axios.post("/api/register", data);
+      //   TODO add success toast + login immediately after signUp
+    } catch (error) {
+      console.log("registration error", error);
+      //   TODO add error toast
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
+    <form onSubmit={handleSubmit(signUp)} className={"flex flex-col gap-3"}>
       <TextInput
         field={"username"}
         label={"Username"}
