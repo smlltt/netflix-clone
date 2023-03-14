@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import TextInput from "@/components/atoms/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useValidationSchema from "@/components/organisms/SignupForm/validation";
 import axios from "axios";
+import AuthButton from "@/components/atoms/AuthButton";
+import useLogin from "@/hooks/useLogin";
+import toast from "react-hot-toast";
+import { defaultErrorMessage } from "@/constants";
 
 const SignupForm = () => {
   const validationSchema = useValidationSchema();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -19,15 +24,19 @@ const SignupForm = () => {
       password: "",
     },
   });
+  const { loading: loginLoading, login } = useLogin();
 
   const signUp: SubmitHandler<FieldValues> = async (data) => {
+    const { email, password } = data;
+    setLoading(true);
     try {
       await axios.post("/api/register", data);
-      //   TODO add success toast + login immediately after signUp
+      toast.success("Signed up successfully!");
+      await login({ email, password });
     } catch (error) {
-      console.log("registration error", error);
-      //   TODO add error toast
+      toast.error(defaultErrorMessage);
     }
+    setLoading(false);
   };
 
   return (
@@ -51,11 +60,7 @@ const SignupForm = () => {
         register={register}
         error={errors.password?.message?.toString()}
       />
-      <button
-        className={"bg-red-600 text-white py-3 rounded-md font-medium mt-6"}
-      >
-        Sign up
-      </button>
+      <AuthButton disabled={loading || loginLoading} text={"Sign up"} />
     </form>
   );
 };
