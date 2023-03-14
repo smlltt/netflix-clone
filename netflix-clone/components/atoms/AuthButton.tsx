@@ -9,7 +9,7 @@ const AuthButton: FC<AuthButtonProps> = ({ disabled, text }) => {
   return (
     <button
       className={cx(
-        "bg-red-600 text-white py-3 rounded-md font-medium mt-6",
+        "bg-red-600 text-white py-3 rounded-md font-medium mt-6 hover:opacity-80 transition",
         disabled && "opacity-50"
       )}
       disabled={disabled}
