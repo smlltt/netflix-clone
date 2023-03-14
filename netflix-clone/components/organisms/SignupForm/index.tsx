@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import TextInput from "@/components/atoms/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useValidationSchema from "@/components/organisms/SignupForm/validation";
+import axios from "axios";
+import AuthButton from "@/components/atoms/AuthButton";
+import useLogin from "@/hooks/useLogin";
+import toast from "react-hot-toast";
+import { defaultErrorMessage } from "@/constants";
 
 const SignupForm = () => {
   const validationSchema = useValidationSchema();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,13 +24,23 @@ const SignupForm = () => {
       password: "",
     },
   });
-  console.log({ errors });
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data", data);
+  const { loading: loginLoading, login } = useLogin();
+
+  const signUp: SubmitHandler<FieldValues> = async (data) => {
+    const { email, password } = data;
+    setLoading(true);
+    try {
+      await axios.post("/api/register", data);
+      toast.success("Signed up successfully!");
+      await login({ email, password });
+    } catch (error) {
+      toast.error(defaultErrorMessage);
+    }
+    setLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
+    <form onSubmit={handleSubmit(signUp)} className={"flex flex-col gap-3"}>
       <TextInput
         field={"username"}
         label={"Username"}
@@ -44,11 +60,7 @@ const SignupForm = () => {
         register={register}
         error={errors.password?.message?.toString()}
       />
-      <button
-        className={"bg-red-600 text-white py-3 rounded-md font-medium mt-6"}
-      >
-        Sign up
-      </button>
+      <AuthButton disabled={loading || loginLoading} text={"Sign up"} />
     </form>
   );
 };

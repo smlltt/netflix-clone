@@ -1,8 +1,10 @@
 import React from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, FieldValues } from "react-hook-form";
 import TextInput from "@/components/atoms/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useValidationSchema from "@/components/organisms/LoginForm/validation";
+import AuthButton from "@/components/atoms/AuthButton";
+import useLogin from "@/hooks/useLogin";
 
 const LoginForm = () => {
   const validationSchema = useValidationSchema();
@@ -17,13 +19,10 @@ const LoginForm = () => {
       password: "",
     },
   });
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data", data);
-  };
+  const { loading, login } = useLogin();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
+    <form onSubmit={handleSubmit(login)} className={"flex flex-col gap-3"}>
       <TextInput
         field={"email"}
         label={"Email"}
@@ -37,11 +36,7 @@ const LoginForm = () => {
         register={register}
         error={errors.password?.message?.toString()}
       />
-      <button
-        className={"bg-red-600 text-white py-3 rounded-md font-medium mt-6"}
-      >
-        Sign in
-      </button>
+      <AuthButton disabled={loading} text={"Sign in"} />
     </form>
   );
 };
