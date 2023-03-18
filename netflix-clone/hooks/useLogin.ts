@@ -4,18 +4,25 @@ import routes from "@/routes";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { defaultErrorMessage } from "@/constants";
+import { useRouter } from "next/router";
 
 const useLogin = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const login: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
     const { email, password } = data;
     try {
-      await signIn("credentials", {
+      const res = await signIn("credentials", {
         email,
         password,
-        callbackUrl: routes.home,
+        redirect: false,
       });
+      if (res?.ok) {
+        router.push(routes.profiles);
+      } else if (res?.error) {
+        toast.error(res.error);
+      }
     } catch (error) {
       toast.error(defaultErrorMessage);
     }

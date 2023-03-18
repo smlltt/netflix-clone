@@ -16,7 +16,8 @@ const Login = () => {
   ) => {
     try {
       signIn(provider, {
-        callbackUrl: routes.home,
+        callbackUrl: routes.profiles,
+        redirect: false,
       });
     } catch (error) {
       toast.error(defaultErrorMessage);

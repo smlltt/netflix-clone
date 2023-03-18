@@ -3,11 +3,11 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import TextInput from "@/components/atoms/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useValidationSchema from "@/components/organisms/SignupForm/validation";
-import axios from "axios";
 import AuthButton from "@/components/atoms/AuthButton";
 import useLogin from "@/hooks/useLogin";
 import toast from "react-hot-toast";
 import { defaultErrorMessage } from "@/constants";
+import { registerUser } from "@/api";
 
 const SignupForm = () => {
   const validationSchema = useValidationSchema();
@@ -30,7 +30,7 @@ const SignupForm = () => {
     const { email, password } = data;
     setLoading(true);
     try {
-      await axios.post("/api/register", data);
+      await registerUser(data);
       toast.success("Signed up successfully!");
       await login({ email, password });
     } catch (error) {
