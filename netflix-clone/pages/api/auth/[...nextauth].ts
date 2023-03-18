@@ -2,12 +2,12 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { prisma } from "@/lib/prismadb";
+import prismadb from "@/lib/prismadb";
 import { compare } from "bcrypt";
 import routes from "@/routes";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prismadb),
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID || "",
@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email and password required");
         }
         const { email, password } = credentials;
-        const user = await prisma.user.findUnique({
+        const user = await prismadb.user.findUnique({
           where: {
             email,
           },
@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
         if (!user || !user.hashedPassword) {
           throw new Error("Email does not exist");
         }
-        const isPasswordCorrect = compare(password, user.hashedPassword);
+        const isPasswordCorrect = await compare(password, user.hashedPassword);
 
         if (!isPasswordCorrect) {
           throw new Error("Wrong password!");

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "@/lib/prismadb";
+import prismadb from "@/lib/prismadb";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,7 +11,7 @@ export default async function handler(
   }
   try {
     const { email, username, password } = req.body;
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prismadb.user.findUnique({
       where: {
         email,
       },
@@ -20,7 +20,7 @@ export default async function handler(
       return res.status(422).json({ error: "Email taken" });
     }
     const hashedPassword = await bcrypt.hash(password, 12);
-    const user = await prisma.user.create({
+    const user = await prismadb.user.create({
       data: {
         email,
         name: username,
@@ -31,7 +31,7 @@ export default async function handler(
     });
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    console.log("register error", error);
     return res.status(400).end();
   }
 }
