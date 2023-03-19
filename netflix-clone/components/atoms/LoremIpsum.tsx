@@ -2,7 +2,7 @@ import React from "react";
 
 const LoremIpsum = () => {
   return (
-    <div className={"text-emerald-50"}>
+    <div className={"text-emerald-50 pt-20"}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
       efficitur tortor ac faucibus placerat. Cras facilisis lobortis eros ac
       sagittis. Aliquam egestas quis tortor vel viverra. Nam dolor libero,
@@ -92,6 +92,55 @@ const LoremIpsum = () => {
       lectus efficitur. Sed tincidunt efficitur porttitor. Integer varius mi et
       metus congue, at laoreet ante tincidunt. Interdum et malesuada fames ac
       ante ipsum primis in faucibus. Etiam lacus elit, consequat et dolor ut,
+      fermentum scelerisque massa. Nunc et laoreet enim. Vivamus eu velit
+      venenatis ligula laoreet pulvinar. Nulla ut leo quis sem faucibus posuere
+      eget eu enim. Quisque tellus metus, eleifend at tortor vel, pretium
+      accumsan lorem. Fusce eu felis a arcu ultrices vehicula sed non libero.
+      Nullam ac libero quis eros consectetur imperdiet. Vivamus vel sapien eget
+      massa gravida varius. Vestibulum malesuada eros et eleifend iaculis.
+      Maecenas ut erat libero. Pellentesque lacinia, odio eu ornare consequat,
+      velit nunc porta ipsum, vitae rhoncus sem felis id ipsum. Mauris rutrum ac
+      erat ac elementum. Etiam ultricies ante sit amet tellus maximus tincidunt
+      aliquet in massa. Cras consequat sem massa, ac finibus tortor hendrerit
+      quis. Donec sed orci faucibus, sollicitudin arcu non, feugiat elit.
+      Curabitur maximus, libero vitae pellentesque posuere, augue nunc porttitor
+      nisl, at sagittis erat odio eget nulla. Cras mollis dolor luctus tellus
+      euismod, ac hendrerit lectus efficitur. Sed tincidunt efficitur porttitor.
+      Integer varius mi et metus congue, at laoreet ante tincidunt. Interdum et
+      malesuada fames ac ante ipsum primis in faucibus. Etiam lacus elit,
+      consequat et dolor ut, fermentum scelerisque massa. Nunc et laoreet enim.
+      Vivamus eu velit venenatis ligula laoreet pulvinar. Nulla ut leo quis sem
+      faucibus posuere eget eu enim. Quisque tellus metus, eleifend at tortor
+      vel, pretium accumsan lorem. Fusce eu felis a arcu ultrices vehicula sed
+      non libero. Nullam ac libero quis eros consectetur imperdiet. Vivamus vel
+      sapien eget massa gravida varius. Vestibulum malesuada eros et eleifend
+      iaculis. Maecenas ut erat libero. Pellentesque lacinia, odio eu ornare
+      consequat, velit nunc porta ipsum, vitae rhoncus sem felis id ipsum.
+      Mauris rutrum ac erat ac elementum. Etiam ultricies ante sit amet tellus
+      maximus tincidunt aliquet in massa. Cras consequat sem massa, ac finibus
+      tortor hendrerit quis. Donec sed orci faucibus, sollicitudin arcu non,
+      feugiat elit. Curabitur maximus, libero vitae pellentesque posuere, augue
+      nunc porttitor nisl, at sagittis erat odio eget nulla. Cras mollis dolor
+      luctus tellus euismod, ac hendrerit lectus efficitur. Sed tincidunt
+      efficitur porttitor. Integer varius mi et metus congue, at laoreet ante
+      tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+      Etiam lacus elit, consequat et dolor ut, fermentum scelerisque massa. Nunc
+      et laoreet enim. Vivamus eu velit venenatis ligula laoreet pulvinar. Nulla
+      ut leo quis sem faucibus posuere eget eu enim. Quisque tellus metus,
+      eleifend at tortor vel, pretium accumsan lorem. Fusce eu felis a arcu
+      ultrices vehicula sed non libero. Nullam ac libero quis eros consectetur
+      imperdiet. Vivamus vel sapien eget massa gravida varius. Vestibulum
+      malesuada eros et eleifend iaculis. Maecenas ut erat libero. Pellentesque
+      lacinia, odio eu ornare consequat, velit nunc porta ipsum, vitae rhoncus
+      sem felis id ipsum. Mauris rutrum ac erat ac elementum. Etiam ultricies
+      ante sit amet tellus maximus tincidunt aliquet in massa. Cras consequat
+      sem massa, ac finibus tortor hendrerit quis. Donec sed orci faucibus,
+      sollicitudin arcu non, feugiat elit. Curabitur maximus, libero vitae
+      pellentesque posuere, augue nunc porttitor nisl, at sagittis erat odio
+      eget nulla. Cras mollis dolor luctus tellus euismod, ac hendrerit lectus
+      efficitur. Sed tincidunt efficitur porttitor. Integer varius mi et metus
+      congue, at laoreet ante tincidunt. Interdum et malesuada fames ac ante
+      ipsum primis in faucibus. Etiam lacus elit, consequat et dolor ut,
       fermentum scelerisque massa. Nunc et laoreet enim. Vivamus eu velit
       venenatis ligula laoreet pulvinar. Nulla ut leo quis sem faucibus posuere
       eget eu enim. Quisque tellus metus, eleifend at tortor vel, pretium
