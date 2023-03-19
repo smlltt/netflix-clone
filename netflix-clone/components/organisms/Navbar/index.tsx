@@ -8,25 +8,40 @@ import { AiOutlineMenu, AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
 import { RxTriangleDown } from "react-icons/rx";
 import AccountMenu from "@/components/organisms/AccountMenu";
 import autoAnimate from "@formkit/auto-animate";
+import cx from "classnames";
 
+const TOP_OFFSET = 66;
 const Navbar = () => {
   const { data: user } = useQuery(["user"], () => fetchUser(), {
     staleTime: defaultStaleTime,
   });
+  const [isScrolled, setIsScrolled] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const accountMenuParentRef = useRef<HTMLDivElement>(null);
   const accountMenuRef = useRef<HTMLDivElement>(null);
+  const triangleRef = useRef(null);
 
+  // animate the account menu's appearance
   useEffect(() => {
     accountMenuParentRef.current && autoAnimate(accountMenuParentRef.current);
   }, [accountMenuParentRef]);
 
+  // add bg color to navbar on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > TOP_OFFSET);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
-      className={
-        "px-4 gap-4 lg:px-16 pt-6 pb-4 flex fixed z-40 bg-zinc-900 w-full items-center"
-      }
+      className={cx(
+        "px-4 gap-4 lg:px-16 pt-6 pb-4 flex fixed z-40 w-full items-center",
+        isScrolled && "bg-zinc-900"
+      )}
     >
       <div
         className={
@@ -68,7 +83,15 @@ const Navbar = () => {
             className={"rounded h-8 w-8 "}
             alt={"profile"}
           />
-          <RxTriangleDown size={22} color={"white"} />
+          <div ref={triangleRef}>
+            <RxTriangleDown
+              size={22}
+              className={cx(
+                "transition text-white",
+                showAccountMenu ? "rotate-180" : "rotate-0"
+              )}
+            />
+          </div>
           <AccountMenu visible={showAccountMenu} ref={accountMenuRef} />
         </div>
       </div>
