@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import cx from "classnames";
 import NavbarItem from "@/components/organisms/Navbar/NavbarItem";
+import Divider from "@/components/atoms/Divider";
 
 interface MobileSidebarProps {
   visible: boolean;
@@ -23,7 +24,7 @@ const MobileSidebar: FC<MobileSidebarProps> = ({ visible, user }) => {
           />
           <NavbarItem label={user || ""} />
         </div>
-        <div className={"bg-neutral-700 h-[1px] mt-3"} />
+        <Divider />
         <NavbarItem label={"Home"} />
         <NavbarItem label={"TV Shows"} />
         <NavbarItem label={"Movies"} />

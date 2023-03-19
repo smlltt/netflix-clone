@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavbarItem from "@/components/organisms/Navbar/NavbarItem";
-import { GiHamburgerMenu } from "react-icons/gi";
 import MobileSidebar from "@/components/organisms/Navbar/MobileSidebar";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "@/api";
 import { defaultStaleTime } from "@/constants";
+import { AiOutlineMenu, AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
+import { RxTriangleDown } from "react-icons/rx";
+import AccountMenu from "@/components/organisms/AccountMenu";
+import autoAnimate from "@formkit/auto-animate";
 
 const Navbar = () => {
   const { data: user } = useQuery(["user"], () => fetchUser(), {
     staleTime: defaultStaleTime,
   });
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
+  const accountMenuParentRef = useRef<HTMLDivElement>(null);
+  const accountMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    accountMenuParentRef.current && autoAnimate(accountMenuParentRef.current);
+  }, [accountMenuParentRef]);
+
   return (
     <div
       className={
@@ -22,10 +33,7 @@ const Navbar = () => {
           "lg:hidden  cursor-pointer flex gap-2 items-center hover:text-neutral-400 transition duration-500 text-white"
         }
       >
-        <GiHamburgerMenu
-          size={30}
-          onClick={() => setShowSidebar(!showSidebar)}
-        />
+        <AiOutlineMenu size={30} onClick={() => setShowSidebar(!showSidebar)} />
         <MobileSidebar visible={showSidebar} user={user?.data.name} />
       </div>
       <img src={"/images/logo.png"} alt={"logo"} className={"h-6 pr-12"} />
@@ -37,13 +45,33 @@ const Navbar = () => {
         <NavbarItem label={"My List"} />
         <NavbarItem label={"Browse by Languages"} />
       </div>
-      {/*<div className={"flex gap-4 items-center cursor-pointer"}>*/}
-      {/*  <AiOutlineSearch size={22} color={"white"} />*/}
-      {/*  <img*/}
-      {/*    src={"./images/default-profile-image.png"}*/}
-      {/*    className={"rounded h-8 w-8 "}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <div
+        className={
+          "flex gap-4 items-center cursor-pointer ml-auto hidden lg:flex"
+        }
+      >
+        <AiOutlineSearch size={22} color={"white"} />
+        <AiOutlineBell size={22} color={"white"} />
+        <div
+          className={"flex items-center gap-4"}
+          onMouseEnter={() => setShowAccountMenu(true)}
+          onMouseLeave={(e) => {
+            if (e.relatedTarget === accountMenuRef.current) {
+              return;
+            }
+            setShowAccountMenu(false);
+          }}
+          ref={accountMenuParentRef}
+        >
+          <img
+            src={"./images/default-profile-image.png"}
+            className={"rounded h-8 w-8 "}
+            alt={"profile"}
+          />
+          <RxTriangleDown size={22} color={"white"} />
+          <AccountMenu visible={showAccountMenu} ref={accountMenuRef} />
+        </div>
+      </div>
     </div>
   );
 };
