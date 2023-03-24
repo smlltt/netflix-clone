@@ -13,7 +13,6 @@ const Billboard = () => {
           <video
             className={"absolute h-full w-full object-cover brightness-[60%]"}
             src={randomMovie.videoUrl}
-            poster={randomMovie.thumbnailUrl}
             autoPlay
             muted
             loop
