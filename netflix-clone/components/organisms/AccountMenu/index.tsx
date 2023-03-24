@@ -11,19 +11,19 @@ const AccountMenu = forwardRef<HTMLDivElement, AccountMenuProps>(
   ({ visible }, ref) => {
     if (!visible) return null;
     return (
-      <div ref={ref} className={"text-white text-sm absolute top-8 right-0"}>
-        <div className={"h-4 bg-zinc-900"} />
+      <div ref={ref} className={"absolute top-8 right-0 text-sm text-white"}>
+        <div className={"h-4 bg-transparent"} />
         <div
-          className={"border border-neutral-800 bg-black opacity-90 w-56 pt-4"}
+          className={
+            "w-56 rounded-sm border border-neutral-800 bg-black pt-4 opacity-90"
+          }
         >
-          <div className={"px-3  flex flex-col gap-3 mb-5 "}>
+          <div className={"mb-5 flex flex-col gap-3 px-3"}>
             <AccountMenuItem text={"Username"} />
-            <AccountMenuItem text={"Account"} />
-            <AccountMenuItem text={"Help"} />
           </div>
           <Divider />
           <div
-            className={"text-center py-4 hover:underline"}
+            className={"py-4 text-center hover:underline"}
             onClick={() => signOut()}
           >
             Sign out of Netflix
