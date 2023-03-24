@@ -15,7 +15,7 @@ const SocialButtonWrapper: FC<SocialButtonWrapperProps> = ({
   return (
     <div
       className={
-        "rounded-full bg-white w-10 h-10 justify-center flex items-center cursor-pointer hover:opacity-80 transition"
+        "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white transition hover:opacity-80"
       }
       {...rest}
     >

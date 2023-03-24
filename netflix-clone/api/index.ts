@@ -4,3 +4,5 @@ import { FieldValues } from "react-hook-form";
 export const registerUser = (data: FieldValues) =>
   axios.post("/api/register", data);
 export const fetchUser = () => axios.get("/api/user");
+
+export const fetchRandomMovie = () => axios.get("/api/random");
