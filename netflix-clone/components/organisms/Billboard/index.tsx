@@ -4,7 +4,6 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const Billboard = () => {
   const { data: randomMovie } = useRandomMovie();
-  console.log("randomMovie", randomMovie);
 
   return (
     <div className={"relative h-[56.25vw] w-screen"}>
