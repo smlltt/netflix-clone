@@ -16,7 +16,7 @@ const Billboard = () => {
             muted
             loop
           />
-          <div className={"absolute top-20 z-50 ml-4 md:top-1/4 lg:ml-16"}>
+          <div className={"absolute top-20 z-10 ml-4 md:top-1/4 lg:ml-16"}>
             <p
               className={
                 "text-2xl font-bold text-white drop-shadow-xl sm:w-1/2 md:text-5xl md:text-6xl"
