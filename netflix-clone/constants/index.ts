@@ -5,3 +5,5 @@ export const defaultStaleTime = 5 * 60000;
 
 // 30 minutes
 export const longStaleTime = 30 * 60000;
+
+export const moviesPerPage = 10;
