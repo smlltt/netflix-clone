@@ -10,3 +10,12 @@ export const fetchRandomMovie = () => axios.get("/api/random");
 
 export const fetchMovies = (queryParams: StandardQueryParams) =>
   axios.get("/api/movies", { params: queryParams });
+
+export const fetchFavorites = (queryParams: StandardQueryParams) =>
+  axios.get("/api/favorites", { params: queryParams });
+
+export const addToFavorites = (movieId: string) =>
+  axios.post("/api/favorite", { movieId });
+
+export const deleteFromFavorites = (movieId: string) =>
+  axios.delete("/api/favorite", { data: { movieId } });

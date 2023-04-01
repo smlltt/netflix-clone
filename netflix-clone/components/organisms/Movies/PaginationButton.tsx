@@ -14,8 +14,8 @@ const PaginationButton: FC<PaginationButtonProps> = ({
   return (
     <div
       className={cx(
-        "absolute top-20 z-50 cursor-pointer text-white opacity-0 transition hover:opacity-100",
-        buttonType === "next" ? "-right-12" : "-left-12"
+        "cursor-pointer text-white opacity-0 transition hover:opacity-100",
+        buttonType === "previous" && "absolute -left-12"
       )}
       onClick={handleClick}
     >

@@ -1,8 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "@/api";
 import { defaultStaleTime } from "@/constants";
+import { User } from "@/api/types";
 
-const useUser = () => {
+type UseUserResult = {
+  data: User | undefined;
+  isLoading: boolean;
+};
+const useUser = (): UseUserResult => {
   const { data, isLoading } = useQuery(["user"], () => fetchUser(), {
     staleTime: defaultStaleTime,
   });

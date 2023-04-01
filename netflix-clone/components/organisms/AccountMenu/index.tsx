@@ -5,10 +5,11 @@ import { signOut } from "next-auth/react";
 
 interface AccountMenuProps {
   visible: boolean;
+  user?: string;
 }
 
 const AccountMenu = forwardRef<HTMLDivElement, AccountMenuProps>(
-  ({ visible }, ref) => {
+  ({ visible, user }, ref) => {
     if (!visible) return null;
     return (
       <div ref={ref} className={"absolute top-8 right-0 text-sm text-white"}>
@@ -19,7 +20,7 @@ const AccountMenu = forwardRef<HTMLDivElement, AccountMenuProps>(
           }
         >
           <div className={"mb-5 flex flex-col gap-3 px-3"}>
-            <AccountMenuItem text={"Username"} />
+            <AccountMenuItem text={user || "Username"} />
           </div>
           <Divider />
           <div

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Movie } from "@/api/types";
 import { AiFillPlayCircle } from "react-icons/ai";
+import FavoriteButton from "@/components/atoms/FavoriteButton";
 
 interface MovieCardProps {
   movie: Movie;
@@ -21,9 +22,13 @@ const MovieCard: FC<MovieCardProps> = ({ movie }) => {
         }
       >
         <div className={"flex items-center justify-between"}>
-          <AiFillPlayCircle size={40} />
+          <div className={"flex"}>
+            <AiFillPlayCircle size={40} />
+            <FavoriteButton movieId={movie.id} />
+          </div>
           <div>{movie.duration}</div>
         </div>
+        <div className={"mt-2"}>{movie.genre}</div>
       </div>
     </div>
   );
