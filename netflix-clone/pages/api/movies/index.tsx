@@ -11,13 +11,16 @@ export default async function handler(
   }
   try {
     await clientAuth(req);
-    const { page, perPage = 10 } = req.query;
-    const movies = await prismadb.movie.findMany({
-      skip: (Number(page) - 1) * Number(perPage),
-      take: Number(perPage),
-    });
+    const { page, perPage = 4 } = req.query;
+    const skip = (Number(page) - 1) * Number(perPage);
+    const take = Number(perPage);
 
-    return res.status(200).json(movies);
+    const [movies, totalCount] = await Promise.all([
+      prismadb.movie.findMany({ skip, take }),
+      prismadb.movie.count(),
+    ]);
+
+    return res.status(200).json({ movies, totalCount });
   } catch (error) {
     console.log("user error", error);
     return res.status(400).end();

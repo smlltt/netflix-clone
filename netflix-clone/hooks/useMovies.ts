@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "@/api";
 import { longStaleTime } from "@/constants";
-import { StandardQueryParams } from "@/api/types";
+import { Movie, StandardQueryParams } from "@/api/types";
 
-type UseMoviesResult<T> = {
-  data: T | undefined;
+type UseMoviesResult = {
+  data: Movie[] | undefined;
+  totalCount: number;
   isLoading: boolean;
   error: unknown;
 };
-const useMovies = <T>(queryParams: StandardQueryParams): UseMoviesResult<T> => {
+const useMovies = (queryParams: StandardQueryParams): UseMoviesResult => {
   const { data, isLoading, error } = useQuery(
     ["movies", queryParams],
     () => fetchMovies(queryParams),
@@ -17,7 +18,8 @@ const useMovies = <T>(queryParams: StandardQueryParams): UseMoviesResult<T> => {
     }
   );
   return {
-    data: data?.data,
+    data: data?.data.movies,
+    totalCount: data?.data.totalCount,
     isLoading,
     error,
   };

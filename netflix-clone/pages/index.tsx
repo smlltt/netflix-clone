@@ -5,7 +5,8 @@ import Billboard from "@/components/organisms/Billboard";
 import useMovies from "@/hooks/useMovies";
 import { moviesPerPage } from "@/constants";
 import Movies from "@/components/organisms/Movies";
-import { Movie } from "@/api/types";
+import { useState } from "react";
+import getPaginationButtons from "@/utils/getPaginationButtons";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // ssr added as a proof of concept. I can pass randomMovies as props to Home. Inspired by https://stackoverflow.com/questions/65752932/internal-api-fetch-with-getserversideprops-next-js
@@ -21,16 +22,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return serverAuth(context);
 };
 export default function Home() {
-  const { data: movies } = useMovies<Movie[]>({
-    page: 1,
+  const [page, setPage] = useState(1);
+  const { data: movies, totalCount } = useMovies({
+    page,
     perPage: moviesPerPage,
   });
+
+  const paginationButtons = getPaginationButtons(
+    totalCount,
+    page,
+    moviesPerPage
+  );
+
   return (
     <div className={"relative"}>
       <Navbar />
       <Billboard />
       <div className={"-bottom-28 mt-3 w-full lg:absolute"}>
-        <Movies title={"Only on Netflix"} movies={movies} />
+        <Movies
+          title={"Only on Netflix"}
+          movies={movies}
+          handlePageChange={(action) =>
+            setPage(action === "next" ? page + 1 : page - 1)
+          }
+          paginationButtons={paginationButtons}
+        />
       </div>
       {/*<LoremIpsum />*/}
     </div>
