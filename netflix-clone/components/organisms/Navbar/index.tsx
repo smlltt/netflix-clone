@@ -88,7 +88,11 @@ const Navbar = () => {
               )}
             />
           </div>
-          <AccountMenu visible={showAccountMenu} ref={accountMenuRef} />
+          <AccountMenu
+            visible={showAccountMenu}
+            ref={accountMenuRef}
+            user={user?.name}
+          />
         </div>
       </div>
     </div>
