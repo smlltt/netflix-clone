@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchRandomMovie } from "@/api";
+import { fetchMovie } from "@/api";
 import { longStaleTime } from "@/constants";
 import { Movie } from "@/api/types";
 
-type UseRandomMovieResult = {
+type UseMovieResult = {
   data: Movie | undefined;
   isLoading: boolean;
   error: unknown;
 };
-const useRandomMovie = (): UseRandomMovieResult => {
+const useMovie = (movieId: string): UseMovieResult => {
   const { data, isLoading, error } = useQuery(
-    ["randomMovie"],
-    () => fetchRandomMovie(),
+    ["movie", movieId],
+    () => fetchMovie(movieId),
     {
       staleTime: longStaleTime,
     }
@@ -23,4 +23,4 @@ const useRandomMovie = (): UseRandomMovieResult => {
   };
 };
 
-export default useRandomMovie;
+export default useMovie;

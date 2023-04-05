@@ -27,10 +27,18 @@ const Movies: FC<MoviesProps> = ({
   if (!movies) return null;
   return (
     <div className={"z-50 w-full px-4 lg:px-16"}>
-      <div className={"mb-2 font-semibold text-white md:text-xl lg:text-2xl"}>
+      <div
+        className={
+          "mb-2 text-center font-semibold text-white sm:text-left md:text-xl lg:text-2xl"
+        }
+      >
         {title}
       </div>
-      <div className={"relative mr-16 flex w-full items-center gap-4"}>
+      <div
+        className={
+          "relative mr-16 flex w-full flex-col items-center gap-4 sm:flex-row"
+        }
+      >
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}

@@ -2,11 +2,14 @@ import React, { FC } from "react";
 import { Movie } from "@/api/types";
 import { AiFillPlayCircle } from "react-icons/ai";
 import FavoriteButton from "@/components/atoms/FavoriteButton";
+import { useRouter } from "next/router";
+import routes from "@/routes";
 
 interface MovieCardProps {
   movie: Movie;
 }
 const MovieCard: FC<MovieCardProps> = ({ movie }) => {
+  const router = useRouter();
   return (
     <div className={"col-span group relative h-[12vw] text-white"}>
       <img
@@ -22,8 +25,11 @@ const MovieCard: FC<MovieCardProps> = ({ movie }) => {
         }
       >
         <div className={"flex items-center justify-between"}>
-          <div className={"flex"}>
-            <AiFillPlayCircle size={40} />
+          <div className={"flex cursor-pointer"}>
+            <AiFillPlayCircle
+              size={40}
+              onClick={() => router.push(routes.movie(movie.id))}
+            />
             <FavoriteButton movieId={movie.id} />
           </div>
           <div>{movie.duration}</div>
