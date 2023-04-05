@@ -1,9 +1,15 @@
 import React from "react";
 import useRandomMovie from "@/hooks/useRandomMovie";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import MainButtonWithIcon from "@/components/atoms/MainButtonWithIcon";
+import { BsPlayFill } from "react-icons/bs";
+import SecondaryButtonWithIcon from "@/components/atoms/SecondaryButtonWithIcon";
+import { useRouter } from "next/router";
+import routes from "@/routes";
 
 const Billboard = () => {
   const { data: randomMovie } = useRandomMovie();
+  const router = useRouter();
 
   return (
     <div className={"relative h-[56.25vw] w-screen"}>
@@ -31,14 +37,17 @@ const Billboard = () => {
             >
               {randomMovie.description}
             </p>
-            <button
-              className={
-                "mt-1 flex items-center gap-2 rounded bg-white bg-opacity-30 py-2 px-5 font-semibold text-white transition hover:bg-opacity-20 sm:mt-5 md:mt-6 md:text-2xl lg:mt-8"
-              }
-            >
-              <AiOutlineInfoCircle />
-              <div>More info</div>
-            </button>
+            <div className={"flex gap-3"}>
+              <MainButtonWithIcon
+                icon={BsPlayFill}
+                text={"Play"}
+                onClick={() => router.push(routes.movie(randomMovie?.id || ""))}
+              />
+              <SecondaryButtonWithIcon
+                icon={AiOutlineInfoCircle}
+                text={"More info"}
+              />
+            </div>
           </div>
         </>
       )}

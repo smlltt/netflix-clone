@@ -11,6 +11,9 @@ export const fetchRandomMovie = () => axios.get("/api/random");
 export const fetchMovies = (queryParams: StandardQueryParams) =>
   axios.get("/api/movies", { params: queryParams });
 
+export const fetchMovie = (movieId: string) =>
+  axios.get(`/api/movies/${movieId}`);
+
 export const fetchFavorites = (queryParams: StandardQueryParams) =>
   axios.get("/api/favorites", { params: queryParams });
 
