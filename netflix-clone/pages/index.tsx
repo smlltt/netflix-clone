@@ -7,6 +7,7 @@ import useFavorites from "@/hooks/useFavorites";
 import cx from "classnames";
 import MainMovieList from "@/components/organisms/MainMovieList";
 import FavoriteMoviesList from "@/components/organisms/FavoriteMoviesList";
+import React from "react";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // ssr added as a proof of concept. I can pass randomMovies as props to Home. Inspired by https://stackoverflow.com/questions/65752932/internal-api-fetch-with-getserversideprops-next-js
@@ -46,7 +47,6 @@ export default function Home() {
           </div>
         )}
       </div>
-
       {/*<LoremIpsum />*/}
     </div>
   );
