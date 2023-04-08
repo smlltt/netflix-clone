@@ -36,7 +36,8 @@ const Navbar = () => {
     <div
       className={cx(
         "fixed z-40 flex w-full items-center gap-4 px-4 pt-6 pb-4 lg:px-16",
-        isScrolled ? "lg:bg-zinc-900" : "lg:bg-transparent"
+        isScrolled ? "lg:bg-zinc-900" : "lg:bg-transparent",
+        showSidebar && "bg-zinc-900"
       )}
     >
       <div

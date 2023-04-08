@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useRandomMovie from "@/hooks/useRandomMovie";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import MainButtonWithIcon from "@/components/atoms/MainButtonWithIcon";
@@ -6,10 +6,12 @@ import { BsPlayFill } from "react-icons/bs";
 import SecondaryButtonWithIcon from "@/components/atoms/SecondaryButtonWithIcon";
 import { useRouter } from "next/router";
 import routes from "@/routes";
+import Modal from "@/components/atoms/Modal";
 
 const Billboard = () => {
   const { data: randomMovie } = useRandomMovie();
   const router = useRouter();
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   return (
     <div className={"relative h-[56.25vw] w-screen"}>
@@ -46,11 +48,13 @@ const Billboard = () => {
               <SecondaryButtonWithIcon
                 icon={AiOutlineInfoCircle}
                 text={"More info"}
+                onClick={() => setShowInfoModal(true)}
               />
             </div>
           </div>
         </>
       )}
+      <Modal isOpen={showInfoModal} onClose={() => setShowInfoModal(false)} />
     </div>
   );
 };
