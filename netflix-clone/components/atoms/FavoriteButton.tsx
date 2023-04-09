@@ -5,10 +5,10 @@ import useDeleteMovieFromFavs from "@/hooks/useDeleteMovieFromFavs";
 import useUser from "@/hooks/useUser";
 import cx from "classnames";
 
-interface FavoriteButtonProps {
+interface FavoriteButtonProps extends React.ComponentProps<"div"> {
   movieId: string;
 }
-const FavoriteButton: FC<FavoriteButtonProps> = ({ movieId }) => {
+const FavoriteButton: FC<FavoriteButtonProps> = ({ movieId, className }) => {
   const { add, beingAdded } = useAddMovieToFavs();
   const { remove, beingRemoved } = useDeleteMovieFromFavs();
   const { data: user } = useUser();
@@ -27,7 +27,8 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({ movieId }) => {
     <div
       className={cx(
         "cursor-pointer",
-        (beingAdded || beingRemoved) && "opacity-70"
+        (beingAdded || beingRemoved) && "opacity-70",
+        className
       )}
     >
       {isFavorite ? (

@@ -6,8 +6,7 @@ import { BsPlayFill } from "react-icons/bs";
 import SecondaryButtonWithIcon from "@/components/atoms/SecondaryButtonWithIcon";
 import { useRouter } from "next/router";
 import routes from "@/routes";
-import Modal from "@/components/atoms/Modal";
-
+import MovieModal from "@/components/organisms/MovieModal";
 const Billboard = () => {
   const { data: randomMovie } = useRandomMovie();
   const router = useRouter();
@@ -52,9 +51,13 @@ const Billboard = () => {
               />
             </div>
           </div>
+          <MovieModal
+            isOpen={showInfoModal}
+            onClose={() => setShowInfoModal(false)}
+            movie={randomMovie}
+          />
         </>
       )}
-      <Modal isOpen={showInfoModal} onClose={() => setShowInfoModal(false)} />
     </div>
   );
 };
