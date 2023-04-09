@@ -21,7 +21,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({ movieId, className }) => {
         ? setIsFavorite(true)
         : setIsFavorite(false);
     }
-  }, [favoriteIds]);
+  }, [favoriteIds, movieId]);
 
   return (
     <div
