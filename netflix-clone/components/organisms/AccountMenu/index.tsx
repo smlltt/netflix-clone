@@ -9,7 +9,7 @@ interface AccountMenuProps {
 }
 
 const AccountMenu = forwardRef<HTMLDivElement, AccountMenuProps>(
-  ({ visible, user }, ref) => {
+  function AccountMenu({ visible, user }, ref) {
     if (!visible) return null;
     return (
       <div ref={ref} className={"absolute top-8 right-0 text-sm text-white"}>
@@ -34,5 +34,7 @@ const AccountMenu = forwardRef<HTMLDivElement, AccountMenuProps>(
     );
   }
 );
+
+AccountMenu.displayName = "AccountMenu";
 
 export default AccountMenu;

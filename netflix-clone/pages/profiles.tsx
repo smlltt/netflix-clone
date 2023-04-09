@@ -18,7 +18,7 @@ const Profiles = () => {
           "mb-4 text-center text-3xl text-white sm:text-4xl md:mb-6 md:text-5xl lg:mb-8 lg:text-6xl xl:mb-10"
         }
       >
-        Who's watching?
+        Who&apos;s watching?
       </div>
 
       <div

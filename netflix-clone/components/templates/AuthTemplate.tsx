@@ -11,7 +11,7 @@ const AuthTemplate: FC<AuthTemplateProps> = ({ authType, children }) => {
   return (
     <div
       className={
-        "relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover bg-fixed"
+        "relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-fixed bg-center bg-no-repeat"
       }
     >
       <div className={"h-full w-full bg-black lg:bg-opacity-50"}>
@@ -21,18 +21,18 @@ const AuthTemplate: FC<AuthTemplateProps> = ({ authType, children }) => {
         <div className={"flex justify-center"}>
           <div
             className={
-              "bg-black bg-opacity-70 p-16 mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full"
+              "mt-2 w-full rounded-md bg-black bg-opacity-70 p-16 lg:w-2/5 lg:max-w-md"
             }
           >
-            <h2 className={"text-white text-4xl mb-8 font-semibold"}>
+            <h2 className={"mb-8 text-4xl font-semibold text-white"}>
               {authType}
             </h2>
             {children}
-            <p className={"text-neutral-500 mt-12"}>
+            <p className={"mt-12 text-neutral-500"}>
               {authType === "Sign in"
                 ? "New to Netflix?"
                 : "Do you alredy have an account?"}{" "}
-              <span className={"text-white cursor-pointer"}>
+              <span className={"cursor-pointer text-white"}>
                 {authType === "Sign in" ? (
                   <Link href={routes.register}>Sign up now</Link>
                 ) : (
