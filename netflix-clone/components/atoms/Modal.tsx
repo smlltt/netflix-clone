@@ -1,11 +1,13 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  children: ReactNode;
 }
-const Modal: FC<ModalProps> = ({ isOpen, onClose }) => {
+const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const parent = useRef(null);
 
   useEffect(() => {
@@ -22,16 +24,15 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose }) => {
         <div ref={parent}>
           {isOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center">
-              <div className="w-1/2 rounded-lg bg-white p-6">
-                {/* Modal content */}
-                <h2 className="mb-4 text-xl font-bold">Modal Title</h2>
-                <p className="mb-4">Modal content goes here.</p>
-                <button
-                  className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+              <div className="relative w-1/2 rounded-lg bg-zinc-900">
+                <AiFillCloseCircle
+                  className={
+                    "absolute right-4 top-4 z-50 cursor-pointer text-white hover:opacity-70"
+                  }
+                  size={40}
                   onClick={onClose}
-                >
-                  Close Modal
-                </button>
+                />
+                {children}
               </div>
             </div>
           )}

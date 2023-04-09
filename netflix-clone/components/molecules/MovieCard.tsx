@@ -1,15 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Movie } from "@/api/types";
 import { AiFillPlayCircle } from "react-icons/ai";
 import FavoriteButton from "@/components/atoms/FavoriteButton";
 import { useRouter } from "next/router";
 import routes from "@/routes";
+import { BiChevronDownCircle } from "react-icons/bi";
+import MovieModal from "@/components/organisms/MovieModal";
 
 interface MovieCardProps {
   movie: Movie;
 }
 const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   const router = useRouter();
+  const [showInfoModal, setShowInfoModal] = useState(false);
   return (
     <div className={"col-span group relative h-[12vw] text-white"}>
       <img
@@ -32,10 +35,20 @@ const MovieCard: FC<MovieCardProps> = ({ movie }) => {
             />
             <FavoriteButton movieId={movie.id} />
           </div>
-          <div>{movie.duration}</div>
+          <BiChevronDownCircle
+            className={"cursor-pointer text-white"}
+            size={40}
+            onClick={() => setShowInfoModal(true)}
+          />
         </div>
+        <div className={"pt-2"}>{movie.duration}</div>
         <div className={"mt-2"}>{movie.genre}</div>
       </div>
+      <MovieModal
+        isOpen={showInfoModal}
+        onClose={() => setShowInfoModal(false)}
+        movie={movie}
+      />
     </div>
   );
 };
