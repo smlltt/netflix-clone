@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
-import { StandardQueryParams } from "@/api/types";
+import { StandardQueryParams } from "@/service/types";
 
 export const registerUser = (data: FieldValues) =>
   axios.post("/api/register", data);

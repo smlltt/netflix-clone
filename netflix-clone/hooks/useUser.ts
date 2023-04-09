@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchUser } from "@/api";
+import { fetchUser } from "@/service";
 import { defaultStaleTime } from "@/constants";
-import { User } from "@/api/types";
+import { User } from "@/service/types";
 
 type UseUserResult = {
   data: User | undefined;

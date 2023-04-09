@@ -3,7 +3,7 @@ import Modal from "@/components/atoms/Modal";
 import MainButtonWithIcon from "@/components/atoms/MainButtonWithIcon";
 import { BsPlayFill } from "react-icons/bs";
 import routes from "@/routes";
-import { Movie } from "@/api/types";
+import { Movie } from "@/service/types";
 import { useRouter } from "next/router";
 import FavoriteButton from "@/components/atoms/FavoriteButton";
 

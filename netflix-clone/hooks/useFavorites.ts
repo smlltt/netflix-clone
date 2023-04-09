@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchFavorites } from "@/api";
+import { fetchFavorites } from "@/service";
 import { longStaleTime } from "@/constants";
-import { Movie, StandardQueryParams } from "@/api/types";
+import { Movie, StandardQueryParams } from "@/service/types";
 
 type UseFavoritesResult = {
   data: Movie[] | undefined;

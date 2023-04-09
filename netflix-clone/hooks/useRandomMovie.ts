@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchRandomMovie } from "@/api";
+import { fetchRandomMovie } from "@/service";
 import { longStaleTime } from "@/constants";
-import { Movie } from "@/api/types";
+import { Movie } from "@/service/types";
 
 type UseRandomMovieResult = {
   data: Movie | undefined;

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteFromFavorites } from "@/api";
+import { deleteFromFavorites } from "@/service";
 
 const useDeleteMovieFromFavs = () => {
   const queryClient = useQueryClient();

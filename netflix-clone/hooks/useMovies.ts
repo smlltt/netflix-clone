@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchMovies } from "@/api";
+import { fetchMovies } from "@/service";
 import { longStaleTime } from "@/constants";
-import { Movie, StandardQueryParams } from "@/api/types";
+import { Movie, StandardQueryParams } from "@/service/types";
 
 type UseMoviesResult = {
   data: Movie[] | undefined;

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Movie } from "@/api/types";
+import { Movie } from "@/service/types";
 import MovieCard from "@/components/molecules/MovieCard";
 import PaginationButton from "@/components/organisms/Movies/PaginationButton";
 import getPaginationButtons from "@/utils/getPaginationButtons";

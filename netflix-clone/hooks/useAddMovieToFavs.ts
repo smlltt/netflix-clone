@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addToFavorites } from "@/api";
+import { addToFavorites } from "@/service";
 
 const useAddMovieToFavs = () => {
   const queryClient = useQueryClient();

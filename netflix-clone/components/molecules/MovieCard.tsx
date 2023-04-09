@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Movie } from "@/api/types";
+import { Movie } from "@/service/types";
 import { AiFillPlayCircle } from "react-icons/ai";
 import FavoriteButton from "@/components/atoms/FavoriteButton";
 import { useRouter } from "next/router";

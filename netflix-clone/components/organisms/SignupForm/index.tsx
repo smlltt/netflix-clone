@@ -7,7 +7,7 @@ import AuthButton from "@/components/atoms/AuthButton";
 import useLogin from "@/hooks/useLogin";
 import toast from "react-hot-toast";
 import { defaultErrorMessage } from "@/constants";
-import { registerUser } from "@/api";
+import { registerUser } from "@/service";
 
 const SignupForm = () => {
   const validationSchema = useValidationSchema();
